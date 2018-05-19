@@ -11,16 +11,31 @@ export class CloudAPIServiceProvider{
     
     } 
 
-    getBooks(id :number) : Promise<IBooks[]> { 
-
+    getBooks(page :number) : Promise<IBooks[]> { 
         return new Promise(resolve => { 
-          this.http.get<IBooks[]>("https://www.anapioficeandfire.com/api/books?page=1&pageSize=10").subscribe(data => { 
+          this.http.get<IBooks[]>("https://www.anapioficeandfire.com/api/books?page="+page+"&pageSize=4").subscribe(data => { 
           resolve(data); 
           }, err => { 
             console.log(err); 
           }); 
         }); 
-      } 
+      }
+
+    
+
+      getBook(id:number) : Promise<IBooks[]> { 
+
+          return new Promise(resolve => { 
+            this.http.get<IBooks[]>("https://www.anapioficeandfire.com/api/books/"+id).subscribe(data => { 
+            resolve(data); 
+            }, err => { 
+              console.log(err); 
+            }); 
+          }); 
+        }
+  
+      
+        
 
       getCharacters(url :string) : Promise<ICharacters> { 
 

@@ -10,19 +10,67 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class HomePage {
   books : IBooks[];
+  book : IBooks[];
   id: number  = 1;
+  page:number = 1
+  isId : boolean = false;
   authors: string;
   characters: ICharacters;
- characterName:any =["jens","tom","test,","poety"]
+  characterName:any =["jens","tom","test,","poety"]
  
 ;
   constructor(public navCtrl: NavController, public cloudAPIProvider: CloudAPIServiceProvider) {
-    this.cloudAPIProvider.getBooks(this.id)
+    this.cloudAPIProvider.getBooks(this.page)
       .then(data => {
-        //console.log(data)
         this.books = data
         //this.setData();
       });
+  }
+
+  Next() {
+    this.isId = false;
+    this.page++;
+    //if(this.books[this.page*4-3].isbn == null){
+    //  this.page--;
+    //}
+    this.cloudAPIProvider.getBooks(this.page)
+    .then(data => {
+      this.books = data
+      //this.setData();
+    });
+  }
+
+  Previous() {
+    this.isId = false;
+    this.page--;
+    if(this.page <1){
+      this.page = 1
+    }
+    this.cloudAPIProvider.getBooks(this.page)
+    .then(data => {
+      this.books = data
+      //this.setData();
+    });
+  }
+
+  Start() {
+    this.isId = false;
+    this.page = 1;
+    this.cloudAPIProvider.getBooks(this.page)
+    .then(data => {
+      this.books = data
+      //this.setData();
+    });
+  }
+
+  Submit(boekId){
+    this.isId = true;
+    this.id = boekId
+    this.cloudAPIProvider.getBook(this.id)
+    .then(data => {
+      this.book = data
+      //this.setData();
+    });
   }
 
   /*setData(){
