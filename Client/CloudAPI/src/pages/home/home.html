@@ -7,6 +7,29 @@
 </ion-header>
 
 <ion-content>
+    <button ion-button>Volgende Pagina</button>
+    <button ion-button>Vorige pagina</button>
+    <button ion-button>Begin</button>
+  <ion-grid *ngIf="books">
+    <ion-row>
+      <ion-col>
+        <ion-card class="card" ion-item *ngFor="let book of books">
+          <ion-card-content>
+            <span *ngIf="book.name">Naam: {{book.name}}</span>
+            <span *ngIf="book.isbn"><br>ISBN-nummer: {{book.isbn}}</span>
+            <span *ngIf="book.numberOfPages"><br>Paginanummers: {{book.numberOfPages}}</span>
+            <span *ngIf="book.publisher"><br>Uitgever: {{book.publisher}}</span>
+            <span *ngIf="book.country"><br>Land: {{book.country}}</span>
+            <span *ngIf="book.mediaType"><br>Cover: {{book.mediaType}}</span>
+            <span *ngIf="book.released"><br>Datum: {{book.released}}</span>
+            
 
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
