@@ -9,22 +9,28 @@ import { ThrowStmt } from '@angular/compiler';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  books : IBooks[];
-  book : IBooks[];
-  id: number  = 1;
-  page:number = 1
-  isId : boolean = false;
+  books: IBooks[];
+  book: IBooks[];
+  id: number = 1;
+  page: number = 1
+  isId: boolean = false;
   authors: string;
-  characters: ICharacters;
-  characterName:any =["jens","tom","test,","poety"]
- 
-;
+  character: ICharacters;
+  house :IHouses;
+  characterName: string;
+  houseName: string;
+  url:string;
+
+    ;
   constructor(public navCtrl: NavController, public cloudAPIProvider: CloudAPIServiceProvider) {
-    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
-      .then(data => {
-        this.books = data
-        //this.setData();
-      });
+    this.getData();
+  }
+
+  getData(){
+    this.cloudAPIProvider.getBooks(this.page, this.isId, this.id)
+    .then(data => {
+      this.books = data
+    });
   }
 
   Next() {
@@ -33,58 +39,52 @@ export class HomePage {
     //if(this.books[this.page*4-3].isbn == null){
     //  this.page--;
     //}
-    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
-    .then(data => {
-      this.books = data
-      //this.setData();
-    });
+    this.getData();
   }
 
   Previous() {
     this.isId = false;
     this.page--;
-    if(this.page <1){
+    if (this.page < 1) {
       this.page = 1
     }
-    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
-    .then(data => {
-      this.books = data
-      //this.setData();
-    });
+    this.getData();
   }
 
   Start() {
+    
     this.isId = false;
     this.page = 1;
-    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
-    .then(data => {
-      this.books = data
-      //this.setData();
-    });
+    this.getData();
   }
 
-  Submit(boekId){
+  Submit(boekId) {
     this.isId = true;
     this.id = boekId
-    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
-    .then(data => {
-      this.book = data
-      //this.setData();
-    });
+    this.cloudAPIProvider.getBooks(this.page, this.isId, this.id)
+      .then(data => {
+        this.book = data
+        this.setData(this.book.characters[0]);
+      });
   }
 
-  /*setData(){
-    //this.authors = this.books.authors[0];
-    for( var i = 0;i<4;i++){
-      this.cloudAPIProvider.getCharacters(this.books.characters[i])
+  setData(url:string) {
+    
+   
+    this.cloudAPIProvider.getCharacters(url)
       .then(data => {
-        this.characters = data;
-        //this.characterName.push(this.characterName.name)
-        
-        
+        this.character = data;
+        this.characterName = this.character.name
+        //console.log(this.character.allegiances[0])
+        this.cloudAPIProvider.getHouses(this.character.allegiances[0])
+        .then(data => {
+          this.house = data;
+          this.houseName = this.house.name
+          console.log(this.houseName)
+        });
       });
-    }
-  }*/
+
+  }
 
 
 }
@@ -98,7 +98,7 @@ export interface IBooks {
   country: string;
   mediaType: string;
   released: Date;
-  characters: string[];
+  characters: any[];
   povCharacters: string[];
 }
 
@@ -119,6 +119,25 @@ export interface ICharacters {
   povBooks: string[];
   tvSeries: string[];
   playedBy: string[];
+}
+
+export interface IHouses {
+  url: string;
+  name: string;
+  region: string;
+  coatOfArms: string;
+  words: string;
+  titles: string[];
+  seats: string[];
+  currentLord: string;
+  heir: string;
+  overlord: string;
+  founded: string;
+  founder: string;
+  diedOut: string;
+  ancestralWeapons: string[];
+  cadetBranches: any[];
+  swornMembers: string[];
 }
 
 

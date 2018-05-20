@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { IBooks, ICharacters } from "../pages/home/home";
+import { IBooks, ICharacters, IHouses } from "../pages/home/home";
 //import { IWeather } from "../pages/home/home";
 
 @Injectable()
@@ -42,6 +42,17 @@ export class CloudAPIServiceProvider {
 
     return new Promise(resolve => {
       this.http.get<ICharacters>(url).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  getHouses(url: string): Promise<IHouses> {
+
+    return new Promise(resolve => {
+      this.http.get<IHouses>(url).subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
