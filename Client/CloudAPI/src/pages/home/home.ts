@@ -20,7 +20,7 @@ export class HomePage {
  
 ;
   constructor(public navCtrl: NavController, public cloudAPIProvider: CloudAPIServiceProvider) {
-    this.cloudAPIProvider.getBooks(this.page)
+    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
       .then(data => {
         this.books = data
         //this.setData();
@@ -33,7 +33,7 @@ export class HomePage {
     //if(this.books[this.page*4-3].isbn == null){
     //  this.page--;
     //}
-    this.cloudAPIProvider.getBooks(this.page)
+    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
     .then(data => {
       this.books = data
       //this.setData();
@@ -46,7 +46,7 @@ export class HomePage {
     if(this.page <1){
       this.page = 1
     }
-    this.cloudAPIProvider.getBooks(this.page)
+    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
     .then(data => {
       this.books = data
       //this.setData();
@@ -56,7 +56,7 @@ export class HomePage {
   Start() {
     this.isId = false;
     this.page = 1;
-    this.cloudAPIProvider.getBooks(this.page)
+    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
     .then(data => {
       this.books = data
       //this.setData();
@@ -66,7 +66,7 @@ export class HomePage {
   Submit(boekId){
     this.isId = true;
     this.id = boekId
-    this.cloudAPIProvider.getBook(this.id)
+    this.cloudAPIProvider.getBooks(this.page,this.isId,this.id)
     .then(data => {
       this.book = data
       //this.setData();
