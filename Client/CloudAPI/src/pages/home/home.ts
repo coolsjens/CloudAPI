@@ -80,7 +80,7 @@ export class HomePage {
         .then(data => {
           this.house = data;
           this.houseName = this.house.name
-          console.log(this.houseName)
+          console.log(this.house)
         });
       });
 
