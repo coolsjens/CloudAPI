@@ -1,0 +1,20 @@
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\bin\Debug\netcoreapp2.0\aspcore.deps.json
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\bin\Debug\netcoreapp2.0\aspcore.runtimeconfig.json
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\bin\Debug\netcoreapp2.0\aspcore.runtimeconfig.dev.json
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\bin\Debug\netcoreapp2.0\aspcore.dll
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\bin\Debug\netcoreapp2.0\aspcore.pdb
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\obj\Debug\netcoreapp2.0\aspcore.csproj.CoreCompileInputs.cache
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\obj\Debug\netcoreapp2.0\aspcore.AssemblyInfoInputs.cache
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\obj\Debug\netcoreapp2.0\aspcore.AssemblyInfo.cs
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\obj\Debug\netcoreapp2.0\aspcore.dll
+C:\Users\Jens Cools\OneDrive - Artesis Plantijn Hogeschool Antwerpen\JAAR 2\Cloud API\projectinles\obj\Debug\netcoreapp2.0\aspcore.pdb
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\bin\Debug\netcoreapp2.0\aspcore.deps.json
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\bin\Debug\netcoreapp2.0\aspcore.runtimeconfig.json
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\bin\Debug\netcoreapp2.0\aspcore.runtimeconfig.dev.json
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\bin\Debug\netcoreapp2.0\aspcore.dll
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\bin\Debug\netcoreapp2.0\aspcore.pdb
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\obj\Debug\netcoreapp2.0\aspcore.csproj.CoreCompileInputs.cache
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\obj\Debug\netcoreapp2.0\aspcore.AssemblyInfoInputs.cache
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\obj\Debug\netcoreapp2.0\aspcore.AssemblyInfo.cs
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\obj\Debug\netcoreapp2.0\aspcore.dll
+C:\Users\Jens Cools\Documents\GitHub\CloudAPI\Server\obj\Debug\netcoreapp2.0\aspcore.pdb
