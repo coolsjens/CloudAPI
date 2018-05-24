@@ -15,14 +15,12 @@ public class CharacterController : Controller
     }
 
     [HttpGet]         
-    public List<Character> GetAllCharacters(string firstname, string lastname, int? page, string sort, int length = 2, string dir = "asc")
+    public List<Character> GetAllCharacters(string firstname, int? page, string sort, int length = 2, string dir = "asc")
     {
         IQueryable<Character> query = context.Characters;
 
         if (!string.IsNullOrWhiteSpace(firstname))
-            query = query.Where(d => d.FirstName == firstname);
-        if (!string.IsNullOrWhiteSpace(lastname))
-            query = query.Where(d => d.LastName == lastname);
+            query = query.Where(d => d.Firstname == firstname);
 
         if (!string.IsNullOrWhiteSpace(sort))
         {
@@ -34,11 +32,11 @@ public class CharacterController : Controller
                     else if (dir == "desc")
                         query = query.OrderByDescending(d => d.Age);
                     break;
-                case "registernumber":
+                case "lastname":
                     if (dir == "asc")
-                        query = query.OrderBy(d => d.RegisterNumber);
+                        query = query.OrderBy(d => d.Lastname);
                     else if (dir == "desc")
-                        query = query.OrderByDescending(d => d.RegisterNumber);
+                        query = query.OrderByDescending(d => d.Lastname);
                     break;
             }
         }
@@ -50,11 +48,12 @@ public class CharacterController : Controller
         return query.ToList();
     }
 
-    [Route("{id}")]  
+    [Route("{id}")]   // api/v1/character/2
     [HttpGet]
     public IActionResult GetCharacter(int id)
     {
         var chara = context.Characters
+                    .Include(d => d.Address)
                     .SingleOrDefault(d => d.Id == id);
 
         if (chara == null)
@@ -63,26 +62,27 @@ public class CharacterController : Controller
         return Ok(chara);
     }
 
+    [Route("{id}/address")]  
+    [HttpGet]
+    public IActionResult GetAddressForCharacter(int id)
+    {
+        var chara = context.Characters
+                    .Include(d => d.Address)
+                    .SingleOrDefault(d => d.Id == id);
+        if (chara == null)
+            return NotFound();
+
+        return Ok(chara.Address);
+    }
+
     [HttpPost]
     public IActionResult CreateCharacter([FromBody] Character newCharacter)
     {
+        //character toevoegen in de databank, Id wordt dan ook toegekend
         context.Characters.Add(newCharacter);
         context.SaveChanges();
-        // Stuur een result 201 met het boek als content
+        // Stuur een result 201 met het character als content
         return Created("", newCharacter);
-    }
-
-    [Route("{id}")]
-    [HttpDelete]
-    public IActionResult DeleteCharacter(int id)
-    {
-        var chara = context.Characters.Find(id);
-        if (chara == null)
-            return NotFound();
-        context.Characters.Remove(chara);
-        context.SaveChanges();
-        //Standaard response 204 bij een gelukte delete
-        return NoContent();
     }
 
     [HttpPut]
@@ -92,16 +92,27 @@ public class CharacterController : Controller
         if (orgCharacter == null)
             return NotFound();
 
-        orgCharacter.FirstName = updateCharacter.FirstName;
-        orgCharacter.LastName = updateCharacter.LastName;
+        orgCharacter.Firstname = updateCharacter.Firstname;
+        orgCharacter.Lastname = updateCharacter.Lastname;
         orgCharacter.Gender = updateCharacter.Gender;
         orgCharacter.Age = updateCharacter.Age;
-        orgCharacter.RegisterNumber = updateCharacter.RegisterNumber;
 
         context.SaveChanges();
         return Ok(orgCharacter);
     }
 
+    [Route("{id}")]
+    [HttpDelete]
+    public IActionResult DeleteCharacter(int id)
+    {
+        var chara = context.Characters.Find(id);
+        if (chara == null)
+            return NotFound();
 
-
+        //character verwijderen ..
+        context.Characters.Remove(chara);
+        context.SaveChanges();
+        //Standaard response 204 bij een gelukte delete
+        return NoContent();
+    }
 }

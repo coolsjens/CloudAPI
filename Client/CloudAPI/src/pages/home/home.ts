@@ -98,7 +98,7 @@ export interface IBooks {
   country: string;
   mediaType: string;
   released: Date;
-  characters: any[];
+  characters: any;
   povCharacters: string[];
 }
 

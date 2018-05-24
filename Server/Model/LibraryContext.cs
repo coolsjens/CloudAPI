@@ -8,8 +8,7 @@ namespace Model{
         {
         }
         public DbSet<Character> Characters { get; set; }
-
-        public DbSet<House> Houses { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }
 

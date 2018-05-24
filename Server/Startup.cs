@@ -47,7 +47,7 @@ namespace aspcore
             }
             app.UseMvc();
 
-            DBInit.Init(libContext);
+            DBIntitializer.Initialize(libContext);
         }
     }
 }
