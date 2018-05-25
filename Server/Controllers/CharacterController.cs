@@ -84,7 +84,7 @@ public class CharacterController : Controller
         context.Characters.Add(newCharacter);
         context.SaveChanges();
         // Stuur een result 201 met het character als content
-        return Created("true", newCharacter);
+        return Ok("true");
     }
 
     [HttpPut]

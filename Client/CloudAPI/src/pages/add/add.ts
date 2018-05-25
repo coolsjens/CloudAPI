@@ -14,12 +14,12 @@ export class Addpage {
 
   }
 
-  Submit(firstname:string,lastname:string,age:number,gender:string,country:string,city:string,zipcode:number,street:string,number:number){
-   
+  Submit(firstname: string, lastname: string, age: number, gender: string, country: string, city: string, zipcode: number, street: string, number: number) {
+
     this.cloudAPIProvider.AddCharacter('{"firstname":"' + firstname + '","lastname":"' + lastname + '","age":"' + age + '","gender":"' + gender + '","address":{"country":"' + country + '","city":"' + city + '","zipcode":"' + zipcode + '","street":"' + street + '","number":"' + number + '"  }}')
-    .then(data => {
-      console.log(firstname,lastname,age,gender)
-    });
+      .then(data => {
+        this.navCtrl.push(OwnPage)
+      });
 
   }
 }

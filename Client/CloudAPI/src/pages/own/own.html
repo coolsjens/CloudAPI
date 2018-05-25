@@ -34,7 +34,7 @@
           <span *ngIf="character.lastname"><br>Achternaam: {{character.lastname}}</span>
           <span *ngIf="character.age"><br>Leeftijd: {{character.age}}</span>
           <span *ngIf="character.gender"><br>Geslacht: {{character.gender}}</span>
-          <span ><br>Address: {{country}} {{city}} {{zipcode}} {{street}} {{number}}</span>
+          <span ><br>Address: {{character.address.country}} {{character.address.city}} {{character.address.zipcode}} {{character.address.street}} {{character.address.number}}</span>
           
 
         </ion-card-content>

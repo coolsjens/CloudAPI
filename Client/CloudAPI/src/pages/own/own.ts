@@ -17,11 +17,6 @@ export class OwnPage {
   id: number = 1;
   page: number = 0;
   isId: boolean = false;
-  country:string;
-  city:string;
-  number:number
-  zipcode:number;
-  street:string
   constructor(public navCtrl: NavController, public cloudAPIProvider: CloudAPIServiceProvider) {
     this.getData();
   }
@@ -46,11 +41,6 @@ export class OwnPage {
     this.cloudAPIProvider.getCharactersOwn(this.page, this.isId, this.id)
       .then(data => {
         this.character = data
-        this.country = this.character.address.country
-        this.city = this.character.address.city
-        this.zipcode = this.character.address.zipcode
-        this.number = this.character.address.number
-        this.street = this.character.address.street
       });
   }
 }
