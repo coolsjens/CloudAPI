@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
 [Route("api/address")]
+[EnableCors("AllowSpecificOrigin")]
 public class AddressController : Controller
 {
     private readonly LibraryContext context;

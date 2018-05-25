@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      CloudAPI Project
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <button ion-button (click)='Add()'>Karater toevoegen</button>
+  <button ion-button (click)='Submit(characterId)'>Zoek karakter id en krijg meer info over het karakter</button>
+  <button ion-button (click)='NextPage()'>Bezoek pagina van online Rest API</button>
+
+  <ion-item>
+  <ion-label color="primary">Karakter id</ion-label>
+  <ion-input type="text" [(ngModel)]="characterId"></ion-input>
+  </ion-item>
+
+  <div *ngIf="isId == false" >
+    <ion-card class="card" ion-item   *ngFor="let char of characters" >
+      <ion-card-content >
+        <span *ngIf="char.id">Id: {{char.id}}</span>
+        <span *ngIf="char.firstname"><br>Voornaam: {{char.firstname}}</span>
+        <span *ngIf="char.lastname"><br>Achternaam: {{char.lastname}}</span>
+        <span *ngIf="char.age"><br>Leeftijd: {{char.age}}</span>
+        <span *ngIf="char.gender"><br>Geslacht: {{char.gender}}</span>
+     </ion-card-content>
+    </ion-card>
+    </div>
+    <ion-card class="card" ion-item *ngIf="isId == true && character " >
+        <ion-card-content >
+          <span *ngIf="character.id">Id: {{character.id}}</span>
+          <span *ngIf="character.firstname"><br>Voornaam: {{character.firstname}}</span>
+          <span *ngIf="character.lastname"><br>Achternaam: {{character.lastname}}</span>
+          <span *ngIf="character.age"><br>Leeftijd: {{character.age}}</span>
+          <span *ngIf="character.gender"><br>Geslacht: {{character.gender}}</span>
+          <span ><br>Address: {{country}} {{city}} {{zipcode}} {{street}} {{number}}</span>
+          
+
+        </ion-card-content>
+      </ion-card>
+
+
+</ion-content>

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
 [Route("api/character")]
+[EnableCors("AllowSpecificOrigin")]
 public class CharacterController : Controller
 {
     private readonly LibraryContext context;
@@ -15,7 +17,7 @@ public class CharacterController : Controller
     }
 
     [HttpGet]         
-    public List<Character> GetAllCharacters(string firstname, int? page, string sort, int length = 2, string dir = "asc")
+    public List<Character> GetAllCharacters(string firstname, int? page, string sort, int length = 500, string dir = "asc")
     {
         IQueryable<Character> query = context.Characters;
 
@@ -82,7 +84,7 @@ public class CharacterController : Controller
         context.Characters.Add(newCharacter);
         context.SaveChanges();
         // Stuur een result 201 met het character als content
-        return Created("", newCharacter);
+        return Created("true", newCharacter);
     }
 
     [HttpPut]

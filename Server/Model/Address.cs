@@ -11,7 +11,7 @@ namespace Model
         public string Street { get; set; }
         public int Zipcode { get; set; }
         public int Number { get; set; }
-        [JsonIgnore]
+       [JsonIgnore]
         public ICollection<Character> Characters { get; set; }
     }
 }

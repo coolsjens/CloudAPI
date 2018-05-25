@@ -35,7 +35,10 @@ namespace aspcore
             );    
 
             services.AddMvc();
-            services.AddCors();
+            services.AddCors(options =>{
+                options.AddPolicy("AllowSpecificOrigin",
+                builder => builder.WithOrigins("http://localhost:8100").AllowAnyHeader().AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +49,7 @@ namespace aspcore
                 app.UseDeveloperExceptionPage();
             }
             app.UseMvc();
+            app.UseCors("AllowSpecificOrigin");
 
             DBIntitializer.Initialize(libContext);
         }

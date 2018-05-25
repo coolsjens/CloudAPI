@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CloudAPIServiceProvider } from '../../providers/CloudAPI-service';
 import { ThrowStmt } from '@angular/compiler';
+import { OwnPage } from '../own/own';
 
 
 @Component({
@@ -36,9 +37,6 @@ export class HomePage {
   Next() {
     this.isId = false;
     this.page++;
-    //if(this.books[this.page*4-3].isbn == null){
-    //  this.page--;
-    //}
     this.getData();
   }
 
@@ -58,6 +56,9 @@ export class HomePage {
     this.getData();
   }
 
+  NextPage(){
+    this.navCtrl.push(OwnPage);
+  }
   Submit(boekId) {
     this.isId = true;
     this.id = boekId

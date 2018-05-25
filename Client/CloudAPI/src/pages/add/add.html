@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        CloudAPI Project
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+<h1>persoon:</h1>
+      <ion-item><ion-label color="primary">Voornaam</ion-label>
+        <ion-input type="text" [(ngModel)]="firstname"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Achternaam</ion-label>
+        <ion-input type="text" [(ngModel)]="lastname"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Leeftijd</ion-label>
+        <ion-input type="text" [(ngModel)]="age"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Geslacht</ion-label>
+        <ion-input type="text" [(ngModel)]="gender"></ion-input></ion-item>
+        <h1>address:</h1>
+        <ion-item><ion-label color="primary">Land</ion-label>
+        <ion-input type="text" [(ngModel)]="country"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Stad</ion-label>
+        <ion-input type="text" [(ngModel)]="city"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Postcode</ion-label>
+        <ion-input type="text" [(ngModel)]="zipcode"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Straat</ion-label>
+        <ion-input type="text" [(ngModel)]="street"></ion-input></ion-item>
+        <ion-item><ion-label color="primary">Nummer</ion-label>
+        <ion-input type="text" [(ngModel)]="number"></ion-input></ion-item>
+
+
+    <button ion-button (click)='Submit(firstname,lastname,age,gender,country,city,zipcode,street,number)'>Voeg nieuw karakter toe</button>
+  </ion-content>
