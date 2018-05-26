@@ -12,7 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HomePage {
   books: IBooks[];
-  book: IBooks[];
+  book: any;
   id: number = 1;
   page: number = 1
   isId: boolean = false;
@@ -118,7 +118,7 @@ export interface IBooks {
   country: string;
   mediaType: string;
   released: Date;
-  characters: any;
+  //characters: any[];
   povCharacters: string[];
 }
 

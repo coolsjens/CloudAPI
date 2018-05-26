@@ -34,6 +34,18 @@ export class CloudAPIServiceProvider {
     }
   }
 
+  getBook(page: number, isId: boolean, id: number) {
+    if (isId == true) {
+      return new Promise(resolve => {
+        this.http.get("https://cors-anywhere.herokuapp.com/https://www.anapioficeandfire.com/api/books/" + id).subscribe(data => {
+          resolve(data);
+        }, err => {
+          console.log(err);
+        });
+      });
+    }
+  }
+
 
 
 
