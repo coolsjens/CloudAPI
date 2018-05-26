@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { CloudAPIServiceProvider } from '../../providers/CloudAPI-service';
 import { ThrowStmt } from '@angular/compiler';
 import { OwnPage } from '../own/own';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 @Component({
@@ -17,21 +18,21 @@ export class HomePage {
   isId: boolean = false;
   authors: string;
   character: ICharacters;
-  house :IHouses;
+  house: IHouses;
   characterName: string;
   houseName: string;
-  url:string;
+  url: string;
 
-    ;
-  constructor(public navCtrl: NavController, public cloudAPIProvider: CloudAPIServiceProvider) {
+  ;
+  constructor(public navCtrl: NavController, private toast: ToastController, public cloudAPIProvider: CloudAPIServiceProvider, private afAuth: AngularFireAuth) {
     this.getData();
   }
 
-  getData(){
+  getData() {
     this.cloudAPIProvider.getBooks(this.page, this.isId, this.id)
-    .then(data => {
-      this.books = data
-    });
+      .then(data => {
+        this.books = data
+      });
   }
 
   Next() {
@@ -50,13 +51,13 @@ export class HomePage {
   }
 
   Start() {
-    
+
     this.isId = false;
     this.page = 1;
     this.getData();
   }
 
-  NextPage(){
+  NextPage() {
     this.navCtrl.push(OwnPage);
   }
   Submit(boekId) {
@@ -69,20 +70,38 @@ export class HomePage {
       });
   }
 
-  setData(url:string) {
-    
-   
+  ionViewWillLoad() {
+    this.afAuth.authState.subscribe(data => {
+      if (data && data.email && data.uid) {
+        this.toast.create({
+          message: 'Welkom bij APP_NAME,' + data.email,
+          duration: 3000
+        }).present();
+      }
+      else {
+        this.toast.create({
+          message: "Kan de authenticatie details niet vinden",
+          duration: 3000
+        }).present();
+      }
+    })
+  }
+
+
+  setData(url: string) {
+
+
     this.cloudAPIProvider.getCharacters(url)
       .then(data => {
         this.character = data;
         this.characterName = this.character.name
         //console.log(this.character.allegiances[0])
         this.cloudAPIProvider.getHouses(this.character.allegiances[0])
-        .then(data => {
-          this.house = data;
-          this.houseName = this.house.name
-          console.log(this.house)
-        });
+          .then(data => {
+            this.house = data;
+            this.houseName = this.house.name
+            console.log(this.house)
+          });
       });
 
   }
